@@ -14,7 +14,7 @@ export default function ManageBooking({brandConfig}) {
   const handleSearch = async () => {
     if (!search.trim()) return alert("Enter PNR or Mobile");
     try {
-      const res = await fetch(`${import.meta.env.API}/api/booking/pnr/${encodeURIComponent(search)}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/pnr/${encodeURIComponent(search)}`);
       if (!res.ok) {
         const err = await res.json();
         return alert(err.error || "Booking not found!");
@@ -31,7 +31,7 @@ export default function ManageBooking({brandConfig}) {
     if (!window.confirm("Are you sure you want to cancel this booking?")) return;
 
     try {
-      const res  = await fetch(`${import.meta.env.API}/api/booking/cancel/${pnr}`, {
+      const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/cancel/${pnr}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reason: cancelReason }),
