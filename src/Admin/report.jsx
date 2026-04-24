@@ -17,7 +17,7 @@ export default function Report({brandConfig}) {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res  = await fetch(`${import.meta.env.API}/api/booking/booking`);
+        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/booking`);
         const data = await res.json();
         setBookings(data);
       } catch (err) {
