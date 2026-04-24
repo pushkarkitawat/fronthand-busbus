@@ -14,7 +14,7 @@ const Register = ({brandConfig}) => {
       const today = new Date().toISOString().split("T")[0];
       setSelectedDate(today);
       try {
-        const res  = await fetch(`${import.meta.env.API}/api/booking/bookings?date=${today}`);
+        const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/bookings?date=${today}`);
         if (!res.ok) throw new Error("Failed to fetch bookings");
         const data = await res.json();
         setBookings(data);
@@ -29,7 +29,7 @@ const Register = ({brandConfig}) => {
 
   const handleStatusUpdate = async (id) => {
     try {
-      const res  = await fetch(`${import.meta.env.API}/api/booking/bookings/${id}/status`, {
+      const res  = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/bookings/${id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "Paid" }),
@@ -44,7 +44,7 @@ const Register = ({brandConfig}) => {
 
   const handlePrintTicket = async (id) => {
     try {
-      const res = await fetch(`${import.meta.env.API}/api/booking/ticket/${id}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/ticket/${id}`);
       if (!res.ok) throw new Error("Failed to fetch ticket");
       const blob = await res.blob();
       const url  = URL.createObjectURL(blob);
@@ -60,7 +60,7 @@ const Register = ({brandConfig}) => {
     const date = e.target.value;
     setSelectedDate(date);
     try {
-      const res = await fetch(`${import.meta.env.API}/api/booking/bookings?date=${date}`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/bookings?date=${date}`);
       if (!res.ok) throw new Error("Failed to fetch bookings");
       setFilteredBookings(await res.json());
     } catch (error) {
