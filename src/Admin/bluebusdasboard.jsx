@@ -23,7 +23,7 @@ export default function Bluebusdasboard({brandConfig}) {
   const [chartData,  setChartData]  = useState({ labels: [], datasets: [] });
 
   useEffect(() => {
-    fetch(`${import.meta.env.API}/api/dashboard/stats`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/stats`)
       .then(r => r.json()).then(setStats);
 
     fetch(`${import.meta.env.API}/api/dashboard/weekly-commission`)
@@ -42,7 +42,7 @@ export default function Bluebusdasboard({brandConfig}) {
         }],
       }));
 
-    fetch(`${import.meta.env.API}/api/dashboard/activities`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/dashboard/activities`)
       .then(r => r.json()).then(setActivities);
   }, []);
 
